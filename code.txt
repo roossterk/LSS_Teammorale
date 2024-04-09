@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Choice</title>
+<style>
+    .choices {
+        display: flex;
+    }
+    .choice {
+        margin-right: 10px;
+        cursor: pointer;
+        font-size: 24px; /* Increase font size for emoticons */
+        padding: 5px;
+        border: 2px solid transparent; /* Transparent border initially */
+        transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for border color change, transform, and box-shadow */
+    }
+    .choice.selected {
+        border-color: red; /* Change border color to red when selected */
+        transform: scale(1.1); /* Increase size of selected emoticon */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add shadow effect to selected emoticon */
+        animation: pulse 1s infinite alternate; /* Add pulsating effect */
+    }
+
+    @keyframes pulse {
+        from {
+            transform: scale(1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        to {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        }
+    }
+</style>
+</head>
+<body>
+<div class="choices">
+    <div class="choice" onclick="selectChoice('😊')">😊</div>
+    <div class="choice" onclick="selectChoice('😐')">😐</div>
+    <div class="choice" onclick="selectChoice('😔')">😔</div>
+</div>
+
+<script>
+    function selectChoice(selected) {
+        var choices = document.querySelectorAll('.choice');
+        choices.forEach(function(choice) {
+            if (choice.textContent === selected) {
+                choice.classList.add('selected');
+            } else {
+                choice.classList.remove('selected');
+            }
+        });
+    }
+</script>
+</body>
+</html>
