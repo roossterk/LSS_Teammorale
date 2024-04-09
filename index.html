@@ -43,11 +43,21 @@
 </div>
 
 <script>
+    // Retrieve the selected choice from local storage, if available
+    var selectedChoice = localStorage.getItem('selectedChoice');
+
+    // Set the initial selected choice, if it exists
+    if (selectedChoice) {
+        document.querySelector('.choices').querySelector(`[data-choice='${selectedChoice}']`).classList.add('selected');
+    }
+
     function selectChoice(selected) {
         var choices = document.querySelectorAll('.choice');
         choices.forEach(function(choice) {
             if (choice.textContent === selected) {
                 choice.classList.add('selected');
+                // Save the selected choice to local storage
+                localStorage.setItem('selectedChoice', selected);
             } else {
                 choice.classList.remove('selected');
             }
